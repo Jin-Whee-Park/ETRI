@@ -1,0 +1,4 @@
+$gcloud compute zones list
+
+NAME                       REGION                   STATUS  NEXT_MAINTENANCE  TURNDOWN_DATE
+seoul 		           asia-northeast3          UP
