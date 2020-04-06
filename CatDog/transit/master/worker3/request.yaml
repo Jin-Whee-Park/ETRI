@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: request
+  labels:
+    app: request
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: request
+  template:
+    metadata:
+      labels:
+        app: request
+    spec:
+      nodeSelector:
+        nodename: node3
+      containers:
+        - image: best888810/sender:fromtransit
+          name: request
+          ports:
+            - containerPort: 5000
+              name: request-port
+          volumeMounts:
+            - name: storage
+              mountPath: /sender/videos
+            - name: result
+              mountPath: /sender/result
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: storage-pvc
+        - name: result
+          persistentVolumeClaim:
+            claimName: result-pvc
+        
+
