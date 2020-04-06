@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sender
+  labels:
+    app: sender
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sender
+  template:
+    metadata:
+      labels:
+        app: sender
+    spec:
+      nodeSelector:
+        nodename: node2
+      containers:
+        - image: best888810/sender:sender
+          name: sender
+          ports:
+            - containerPort: 5000
+              name: sender-port
+          volumeMounts:
+            - name: result
+              mountPath: /sender/result
+      volumes:
+        - name: result
+          persistentVolumeClaim:
+            claimName: result-pvc
+        
+
