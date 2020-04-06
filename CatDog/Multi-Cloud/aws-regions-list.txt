@@ -1,0 +1,11 @@
+# 2019.11.09. by powerkim.
+$aws ec2 describe-regions
+
+{
+    "Regions": [
+        {
+            "RegionName": "seoul",
+            "Endpoint": "ec2.ap-northeast-2.amazonaws.com"
+        }
+    ]
+}
