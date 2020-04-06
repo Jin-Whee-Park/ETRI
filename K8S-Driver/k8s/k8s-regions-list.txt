@@ -1,0 +1,11 @@
+# 2019.11.09. by powerkim.
+$k8s cluster describe-regions
+
+{
+    "Regions": [
+        {
+            "RegionName": "etri",
+            "Endpoint": "k8s.etri.com"
+        }
+    ]
+}
