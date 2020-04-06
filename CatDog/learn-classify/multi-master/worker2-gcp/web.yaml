@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tensorflow-web
+  labels:
+    app: tensorflow-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tensorflow-web
+  template:
+    metadata:
+      labels:
+        app: tensorflow-web
+    spec:
+      nodeSelector:
+        node: worker2
+      containers:
+        - image: best888810/tensorflow:1.0
+          name: tensorflow-web
+          ports:
+            - containerPort: 5000
+              name: tensorflow-port
+          volumeMounts:
+            - name: storage
+              mountPath: /app/data/classify
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: storage-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tensorflow-web
+  labels:
+    app: tensorflow-web
+spec:
+  type: NodePort
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+  selector:
+    app: tensorflow-web
+
