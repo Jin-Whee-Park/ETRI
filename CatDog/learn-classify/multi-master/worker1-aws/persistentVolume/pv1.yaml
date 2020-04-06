@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: storage
+spec:
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  capacity:
+    storage: 10Gi
+  storageClassName: nfs  
+  nfs:
+    server: IP
+    path: /nfsroot/videos
