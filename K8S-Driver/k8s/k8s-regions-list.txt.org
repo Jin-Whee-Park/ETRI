@@ -1,0 +1,11 @@
+# 2019.11.09. by powerkim.
+$aws ec2 describe-regions
+
+{
+    "Regions": [
+        {
+            "RegionName": "kr-etri-2",
+            "Endpoint": "k8s.etri.com"
+        }
+    ]
+}
